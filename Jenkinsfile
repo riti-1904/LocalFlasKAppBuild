@@ -10,7 +10,9 @@ pipeline {
             steps {
                 script {
                     echo "Cloning the repository..."
-                    git url: 'C:\Users\pasar\OneDrive\Desktop\FlaskApp', branch: 'master'
+                    // git url: 'C:\Users\pasar\OneDrive\Desktop\FlaskApp', branch: 'master'
+                    git url: 'file:///C:/Users/pasar/OneDrive/Desktop/FlaskApp', branch: 'master'
+
                 }
             }
         }
