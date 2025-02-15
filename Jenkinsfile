@@ -10,7 +10,7 @@ pipeline {
             steps {
                 script {
                     echo "Cloning the repository..."
-                    git url: 'https://github.com/riti-1904/LocalFlasKAppBuild.git', branch: 'master'
+                    git url: 'git@github.com:riti-1904/LocalFlasKAppBuild.git', branch: 'master'
                 }
             }
         }
