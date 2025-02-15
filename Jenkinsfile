@@ -8,32 +8,51 @@ pipeline {
     stages {
         stage('Checkout Code') {
             steps {
-                git url: 'C:\Users\pasar\OneDrive\Desktop\FlaskApp', branch: 'master'
+                script {
+                    echo "Cloning the repository..."
+                    git url: 'C:\Users\pasar\OneDrive\Desktop\FlaskApp', branch: 'master'
+                }
             }
         }
 
         stage('Install Dependencies') {
             steps {
-                sh 'pip3 install -r requirements.txt'
+                script {
+                    echo "Installing dependencies..."
+                    sh 'pip3 install -r requirements.txt'
+                }
             }
         }
 
         stage('Stop Previous Instance') {
             steps {
-                sh "pkill -f 'python3 app.py' || true"
+                script {
+                    echo "Stopping previous Flask instance (if any)..."
+                    sh "pkill -f 'python3 app.py' || true"
+                }
             }
         }
 
         stage('Run Flask App') {
             steps {
-                sh 'nohup python3 app.py &'
+                script {
+                    echo "Starting Flask application..."
+                    sh 'nohup python3 app.py &'
+                }
             }
         }
     }
 
     post {
         success {
-            echo "Flask application started successfully."
+            script {
+                echo "Flask application started successfully."
+            }
+        }
+        failure {
+            script {
+                echo "Build failed!"
+            }
         }
     }
 }
